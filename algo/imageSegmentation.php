@@ -6,6 +6,7 @@
 	//imagefilter($img, IMG_FILTER_CONTRAST, 20);
 	imagefilter($img, IMG_FILTER_GRAYSCALE);
 	$lineIs = array(h);
+	$cuts = array();
 
 	function pixelIntensity($x, $y) {
 		global $img;
@@ -34,15 +35,31 @@
 
 	function processLines() {
 		global $lineIs, $img, $w, $h;
-		for ($i = 0; $i < $h; $i += 3) {
-			$v = lineValue($i) + lineValue($i + 1) + lineValue($i + 2);
-			lineIs[$i/3] = $v;
+		for ($i = 0; $i < $h; $i += 2) {
+			$v = lineValue($i) + lineValue($i + 1);
+			$lineIs[$i/2] = $v;
+			//echo $v;
+			//echo "\n";
 		}
 	}
+
+	function cut() {
+		global $lineIs, $img, $w, $h, $cuts;
+		for ($i = 0; $i < $h - 2; $i += 2) {
+			$x = $i/2;
+			if ($lineIs[$x] == 0 && $lineIs[$x + 1] > 5000) {
+				array_push($cuts, 2*$x);
+				echo (2 * $x);
+				echo "\n";
+			}
+		}
+	}
+
 	echo $w;
 	echo ". ";
 	echo $h;
 	echo "\n";
 	processLines();
+	cut();
 
 ?>
