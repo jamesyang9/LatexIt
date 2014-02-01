@@ -10,3 +10,7 @@ algo/54.tex
 *.db
 
 *.db
+
+*.png
+
+db/site.db
