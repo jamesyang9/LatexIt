@@ -79,6 +79,10 @@ $(function() {
                 });
             });
         });
+
+        socket.on('nodata', function() {
+            console.log('fail');
+        });
         
         $('#input textarea').keydown(function(e) {
             if (e.which == 13) {

@@ -35,37 +35,47 @@ function assign(user) {
                 return;
             }
         }
-        
-        db.all("SELECT * FROM homeworks WHERE completed = 0", function(err, hws) {
-            
-            var hw = hws[0];
-            var pieces = [];
-            for (var i = 0; i < hw.num_pieces; i++) {
-                pieces.push(i);
-            }
 
-            db.all("SELECT * FROM answers WHERE hw_id = " + hw.id, function(err, answers) {
-                answers.forEach(function(answer) {
-                    var idx = pieces.indexOf(answer.piece_num);
-                    if (idx > -1) {
-                        pieces.splice(idx, 1);
+        db.all("SELECT * FROM homeworks", function(err, hws) {
+            db.all("SELECT * FROM answers", function(err, answers) {
+                for (var h = 0; h < hws.length; h++) {
+                    var hw = hws[h];
+                    
+                    var pieces = [];
+                    for (var i = 0; i < hw.num_pieces; i++) {
+                        pieces.push(i);
                     }
-                });
+                    
+                    answers.forEach(function(answer) {
+                        if (answer.hw_id != hw.id) return;
 
-                hw_id = hw.id;
-                piece_num = pieces[Math.floor(Math.random() * pieces.length)];
-                
-                room = {users: [user], 
-                        time: new Date().getTime(), 
-                        running: false,
-                        hw: hw_id,
-                        piece: piece_num,
-                        answers: 0};
-                rooms.push(room);
+                        var idx = pieces.indexOf(answer.piece_num);
+                        if (idx > -1) {
+                            pieces.splice(idx, 1);
+                        }
+                    });
 
-                console.log('Creating new room', room);
+                    if (pieces.length === 0) continue;
+                    
+                    hw_id = hw.id;
+                    piece_num = pieces[Math.floor(Math.random() * pieces.length)];
+                    
+                    room = {users: [user], 
+                            time: new Date().getTime(), 
+                            running: false,
+                            hw: hw_id,
+                            piece: piece_num,
+                            answers: 0};
+                    rooms.push(room);
+                    
+                    console.log('Creating new room', room);
+                    
+                    user.room = room;
+                    release();
+                    return;
+                }
 
-                user.room = room;
+                user.emit('nodata', '');
                 release();
             });
         });
@@ -103,9 +113,6 @@ io.sockets.on('connection', function (socket) {
 
         socket.room.answers++;
         if (socket.room.answers == socket.room.users.length) {
-            // check if all answers are in for a given picture and set completed to true if so
-            // TODO ^
-
             console.log('Room finished');
             var times = [];
             socket.room.users.forEach(function(user) {
