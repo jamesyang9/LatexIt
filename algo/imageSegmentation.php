@@ -7,18 +7,18 @@
 	function pixelIntenxity($x, $y) {
 		global $img;
 		$rgb = imagecolorat($img, $x, $y);
-		$i = $rgb & 0xFF;
-
-		return imagecolorat($img, $x, $y);
+		return ($rgb & 0xFF);
 	}
 
 	function pixelValue($x, $y) {
-		global $w, $h, $img, $imgg;
+		global $w, $h, $img;
+		$l = max(0, $x - 2);
+		return pow($l, 2);
 		return 1;
 	}
 
 	function lineValue($x, $y) {
-		global $w, $h, $img, $imgg;
+		global $w, $h, $img;
 		return 2;
 	}
 
