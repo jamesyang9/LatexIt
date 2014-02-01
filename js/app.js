@@ -106,7 +106,7 @@ $(function() {
         };
         $.post('algo/generatePDF.php', {'arr': globalData.texSeq, 'id': 54})
         .done(function () {
-            window.open("algo/54.pdf", "popupWindow", "");
+            window.open("algo/54.pdf");
         });
     });
 });

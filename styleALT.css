@@ -1,0 +1,286 @@
+@font-face {
+    font-family: 'handwritten';
+    src: url('fonts/willyjhandwriting-webfont.eot');
+    src: url('fonts/willyjhandwriting-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/willyjhandwriting-webfont.woff') format('woff'),
+         url('fonts/willyjhandwriting-webfont.ttf') format('truetype'),
+         url('fonts/willyjhandwriting-webfont.svg#will_retrymedium') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Computer Modern Serif';
+    src: url('fonts/cmunrm.eot');
+    src: url('fonts/cmunrm.eot?#iefix') format('embedded-opentype'),
+     url('fonts/cmunrm.woff') format('woff'),
+      url('fonts/cmunrm.ttf') format('truetype'),
+       url('fonts/cmunrm.svg#cmunrm') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+@font-face {
+    font-family: 'Computer Modern Serif';
+    src: url('fonts/cmunbx.eot');
+    src: url('fonts/cmunbx.eot?#iefix') format('embedded-opentype'),
+     url('fonts/cmunbx.woff') format('woff'),
+      url('fonts/cmunbx.ttf') format('truetype'),
+       url('fonts/cmunbx.svg#cmunbx') format('svg');
+    font-weight: bold;
+    font-style: normal;
+}
+
+
+@font-face {
+    font-family: 'Computer Modern Serif';
+    src: url('fonts/cmunti.eot');
+    src: url('fonts/cmunti.eot?#iefix') format('embedded-opentype'),
+     url('fonts/cmunti.woff') format('woff'),
+      url('fonts/cmunti.ttf') format('truetype'),
+       url('fonts/cmunti.svg#cmunti') format('svg');
+    font-weight: normal;
+    font-style: italic;
+}
+
+
+@font-face {
+    font-family: 'Computer Modern Serif';
+    src: url('fonts/cmunbi.eot');
+    src: url('fonts/cmunbi.eot?#iefix') format('embedded-opentype'),
+     url('fonts/cmunbi.woff') format('woff'),
+      url('fonts/cmunbi.ttf') format('truetype'),
+       url('fonts/cmunbi.svg#cmunbi') format('svg');
+    font-weight: bold;
+    font-style: italic;
+}
+
+* { margin: 0; padding: 0; }
+
+body {
+    background: #2F2933 url('images/background.png') no-repeat center 100px;
+    color: #ffffa6;
+    font-family: 'handwritten', Arial, sans-serif;
+    font-size: 24px;
+    padding-top: 20px;
+}
+
+h1, h2, h3 {
+    font-size: 72px;
+}
+
+a {
+    color: #ffffa6;
+    font-size: 40px;
+}
+
+.navbar {
+    background: url(images/header_line.png) no-repeat center bottom;
+    padding-bottom: 10px;
+}
+
+.navbar-brand {
+    font-size: 40px;
+}
+
+.navbar a {
+    text-transform: lowercase;
+    font-size: 28px;
+    letter-spacing: 1.5px;
+    margin-left: 150px;
+    position: relative;
+    top: 8px;
+}
+
+.navbar a:hover {
+    background: transparent!important;
+    color: white;
+}
+
+#login {
+    width: 225px;
+    height: 140px;
+    position: absolute;
+    left: 0; right: 0; top: 0; bottom: 0;
+    margin: auto;
+}
+
+#login #logo {
+    margin-bottom: 15px;
+}
+
+#logo span {
+    font-size: 40px;
+    vertical-align: bottom;
+}
+
+#login input[type=text] {
+    width: 100%;
+    padding: 3px 5px;
+    color: black;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+}
+
+#login input[type=submit] {
+    border: none;
+    outline: none;
+    background: url('images/arrows.png') no-repeat center top;
+    width: 45px;
+    height: 20px;
+    margin-top: 24px;
+    position: relative;
+    left: 14px;
+    float: right;
+}
+
+#login input[type=submit]:hover {
+    background-position: center bottom;
+}
+
+#play {
+    position: relative;
+    height: 400px;
+}
+
+#playbtn {
+    position: absolute;
+    left: 0; right: 0; top: 0; bottom: 0;
+    margin: auto;
+    cursor: pointer;
+    width: 400px;
+    height: 140px;
+    text-align: center;
+}
+
+#description, #waiting {
+    font-size: 64px;
+    color: #29d2bd;
+    word-spacing: -0.1em;
+    -webkit-transform: scale(1, 0.8);
+}
+
+#waiting {
+    display: none;
+}
+
+#guesser {
+    display: none;
+    width: 800px;
+    height: 440px;
+    margin: 30px auto 0;
+    position: relative;
+    background: url('images/type_box.png') no-repeat center center;
+}
+
+#sample {
+    margin-bottom: 50px;
+    margin-top: 10px;
+    margin-left: 20px;
+    width: 765px;
+}
+
+#sample img {
+    border-radius: 20px;
+    width: 765px;
+    height: 120px;
+}
+
+#timer {
+    position: absolute;
+    font-size: 48px;
+    padding: 3px 5px;
+    color: #bef371;
+    right: 0;
+    top: -60px;
+}
+
+#input textarea {
+    padding: 5px 8px;
+    font-family: 'Courier New', monospace;
+    color: black;
+    width: 762px;
+    height: 117px;
+    margin-left: 19px;
+    margin-bottom: 10px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 10px;
+}
+
+#output {
+    background: white;
+    color: black;
+    min-height: 30px;
+    padding: 5px;
+    font-family: 'Computer Modern Serif', 'Arial', sans-serif;
+    width: 762px;
+    height: 115px;
+    margin-left: 19px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 40px;
+    
+}
+.tex {
+    cursor: pointer;
+    background: white;
+    color: black;
+    min-height: 35px;
+    padding: 5px;
+    padding-left: 10px;
+    font-family: 'Computer Modern Serif', 'Arial', sans-serif;
+    min-width: 35px;
+    margin: 6px;
+    border-radius: 10px;
+    display: inline-block;
+}
+
+.hwline {
+    max-width: 100%;
+    display: block;
+}
+.hwline.hidden {
+    visibility: hidden;
+}
+
+.rhalf {
+    width: 48%;
+    display: inline-block;
+    float: right;
+    height: 100%;
+    top: 0px;
+}
+
+.answersWrap {
+    visibility: visible;
+}
+.answersWrap.hidden {
+    visibility: hidden;
+}
+#generatePDF{
+    cursor: pointer;
+}
+.selected {
+    background: yellow;
+}
+
+.lineimg {
+    margin: 6px;
+    border-radius: 10px;
+    max-width: 100%;
+}
+
+.lhalf {
+    width: 48%;
+    display: inline-block;
+    float: left;
+    height: 100%;
+    top: 0px;
+}
+.preview {
+    width: 100%;
+    top: 0px;
+    min-height: 500px;
+    opacity: .5;
+}
+
