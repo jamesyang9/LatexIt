@@ -5,7 +5,8 @@
   "main": "socket.js",
   "dependencies": {
     "socket.io": "~0.9.16",
-    "sqlite3": "~2.2.0"
+    "sqlite3": "~2.2.0",
+    "rwlock": "~4.0.0"
   },
   "devDependencies": {},
   "scripts": {

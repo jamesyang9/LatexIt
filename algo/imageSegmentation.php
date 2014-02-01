@@ -52,7 +52,7 @@
 		$dst_y = 0;
 	 	$outImg = imagecreate($w, $dst_h);
  		imagecopyresampled($outImg, $img, $dst_x, $dst_y, $src_x, $src_y, $dst_w, $dst_h, $dst_w, $dst_h);
-		imagepng($outImg, $imgId . "_" . $sliceNum . ".png");
+		imagepng($outImg, getcwd() . '/images/latex/' . $imgId . "_" . $sliceNum . ".png");
 	}
 
 	function cut() {
@@ -95,13 +95,5 @@
 		$cuts = array();
 		return cut();
 	}
-
-	//echo $w;
-	//his
-	//echo ". ";
-	//echo $h;
-	//echo "\n";
-	//processLines();
-	cutImage(100, "photo-2.png");
 
 ?>
