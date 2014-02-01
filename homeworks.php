@@ -14,6 +14,8 @@
       function generateHWs($uid) {
          global $db, $hack_num_lines;
          //$query = "SELECT * from ANSWERS WHERE id = {$id}";
+         $query = $db->prepare('DELETE FROM answers WHERE answer = ""');
+         $query->execute();
          $query = $db->prepare('SELECT * from homeworks where user_id = :uid');
          $query->execute(
             array('uid' => $uid)
@@ -27,7 +29,7 @@
 
       function generateLine($piece_num, $id) {
          global $db;
-         $image_url = "images/".$id."_".$piece_num.".png";
+         $image_url = "images/latex/".$id."_".$piece_num.".png";
          echo "<div class='hwline'> Line: $piece_num <img class='lineimg' src='$image_url'></img> <div class='answersWrap'>";
          //$query = "SELECT * from ANSWERS WHERE id = {$id}";
          $query = $db->prepare('SELECT * from answers where hw_id = :id and piece_num = :piece_num');
@@ -40,7 +42,7 @@
          }
          echo "</div></div>";
       }
-      generateHWs("jamesyan");
+      generateHWs($_COOKIE['id']);
    ?>
    </div>
    

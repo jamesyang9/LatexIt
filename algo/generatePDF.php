@@ -16,7 +16,7 @@
 		}
 		fwrite($texFile, "\n\n\\end{document}");
 		fclose($texFile);
-		shell_exec("pdflatex ". $filename . ".tex");
+		shell_exec("pdflatex -interaction=nonstopmode ". $filename . ".tex");
 	}
 	generatePDF($strs, $name);
 ?>

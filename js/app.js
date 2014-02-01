@@ -105,26 +105,28 @@ $(function() {
     }
 
     $('#generatePDF').click(function () {
+        var id = 54;
         console.log(globalData.texSeq);
         if(!isComplete()) {
             alert('Please make a choice for every line');
             return;
         };
-        $.post('algo/generatePDF.php', {'arr': globalData.texSeq, 'id': 54})
+        $.post('algo/generatePDF.php', {'arr': globalData.texSeq, 'id': id})
         .done(function () {
-            window.open("algo/54.pdf");
+            window.location.href = "algo/"+id+".pdf";
         });
     });
 
     $('#generateTEX').click(function () {
+        var id = 54;
         console.log(globalData.texSeq);
         if(!isComplete()) {
             alert('Please make a choice for every line');
             return;
         };
-        $.post('algo/generatePDF.php', {'arr': globalData.texSeq, 'id': 54})
+        $.post('algo/generateTEX.php', {'arr': globalData.texSeq, 'id': id})
         .done(function () {
-            window.open("algo/54.tex");
+           window.location.href = "algo/"+id+".tex";
         });
     });
 
