@@ -1,25 +1,25 @@
       <div id="footer">
         <div id="tops">
           <table>
-            <? $query = $db->query("SELECT SUM(score) FROM answers GROUP BY answerer_id");
+            <? $query = $db->query("SELECT answerer_id SUM(score) as s FROM answers GROUP BY answerer_id SORT by s");
             ?>
             <tr>
               <td>Will</td>
-              <td>1000</td>
+              <td>132</td>
             </tr>
             <tr>
-              <td>Will</td>
-              <td>1000</td>
-            </tr>
-
-            <tr>
-              <td>Will</td>
-              <td>1000</td>
+              <td>James</td>
+              <td>110</td>
             </tr>
 
             <tr>
-              <td>Will</td>
-              <td>1000</td>
+              <td>Patrick</td>
+              <td>95</td>
+            </tr>
+
+            <tr>
+              <td>Maryyann</td>
+              <td>92</td>
             </tr>
 
           </table>

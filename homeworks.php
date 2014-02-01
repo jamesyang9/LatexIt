@@ -65,7 +65,8 @@
             }
          ?>
       </div>
+      <div style="clear:both;"></div>
    </div>
-
+   <div style="clear:both;"></div>
    </div>
 <? require_once 'footer.php'; ?>

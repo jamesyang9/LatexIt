@@ -388,7 +388,7 @@ a {
 .preview {
     width: 100%;
     top: 0px;
-    min-height: 300px;
+    min-height: 90%;
     opacity: .9;
 }
 
