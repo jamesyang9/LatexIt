@@ -18,7 +18,7 @@
 		$l = max(0, $x - 2);
 		$leftI = pixelIntensity($l, $y);
 		$thisI = pixelIntensity($x, $y);
-		return pow($leftI - $thisI, 2);
+		return pow($leftI - $thisI, 2);  
 	}
 
 	function lineValue($y) {
