@@ -111,25 +111,27 @@ io.sockets.on('connection', function (socket) {
                 return a.answer_time < b.answer_time;
             });
 
-            var scoreboard = {};
+            var scoreboard = [];
             var just_text = times.map(function(u){ return u.text; });
 
             console.log('Execing', "php algo/score.php '" + JSON.stringify(just_text) + "'");
             exec("php algo/score.php '" + JSON.stringify(just_text) + "'", function(error, stdout, stderr) {
-                console.log(stdout);
-            });
-
-            for (var i = 0; i < times.length; i++) {
-                var score = 10;
-                var stmt = db.prepare('UPDATE answers SET score = ? WHERE answerer_id = ? AND hw_id = ?');
-                stmt.run(score, socket.user_id, socket.room.hw);
-                scoreboard[times[i].user_name] = score;
-            }
-            stmt.finalize()
-            
-            socket.room.users.forEach(function(user) {
-                user.emit('finished', scoreboard);
-                assign(user);
+                var scores = JSON.parse(stdout);
+                
+                for (var i = 0; i < times.length; i++) {
+                    var score = scores[i];
+                    var stmt = db.prepare('UPDATE answers SET score = ? WHERE answerer_id = ? AND hw_id = ?');
+                    stmt.run(score, socket.user_id, socket.room.hw);
+                    scoreboard.push({name:times[i].user_name, score: score});
+                }
+                stmt.finalize()
+                
+                socket.room.users.forEach(function(user) {
+                    user.emit('finished', scoreboard);
+                    setTimeout(function() {
+                        assign(user);
+                    }, 7000);
+                });
             });
         }
     });
