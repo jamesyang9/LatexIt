@@ -1,5 +1,5 @@
 <?php
-	$img = imagecreatefrompng("photo-1.png");
+	$img = imagecreatefrompng("photo-2.png");
 	$w = imagesx($img);
 	$h = imagesy($img);
 	$thresh = 3600;
@@ -43,23 +43,51 @@
 		}
 	}
 
+	function outputPNG($y1, $y2, $sliceNum){
+		global $lineIs, $img, $w, $h, $cuts;
+        $dst_w = $w;
+        $dst_h = $y2 - $y1;
+        $src_x = 0;
+		$src_y = $y1;
+        $dst_x = 0;
+		$dst_y = 0;
+	 	$outImg = imagecreate($w, $dst_h);
+ 		imagecopyresampled($outImg, $img, $dst_x, $dst_y, $src_x, $src_y, $dst_w, $dst_h, $dst_w, $dst_h);
+		imagepng($outImg, "img" . $sliceNum . ".png");
+	}
+
 	function cut() {
 		global $lineIs, $img, $w, $h, $cuts;
-		for ($i = 0; $i < $h - 2; $i += 2) {
-			$x = $i/2;
-			if ($lineIs[$x] == 0 && $lineIs[$x + 1] > 5000) {
-				array_push($cuts, 2*$x);
-				echo (2 * $x);
-				echo "\n";
+		$sliceNum = 0;
+		$step = 1;
+		$start = 0;
+		$state = 0;
+
+		for ($y = 0; $y < $h - 10; $y += $step) {
+			$l = lineValue($y);
+
+			if ($l < 5000 && $state == 1) {
+				if (($y - $start) > 8) {
+					echo ($y);
+					echo "\n";
+					outputPNG(max(0, $start - 10), $y + 10, $sliceNum);
+					$sliceNum += 1;
+				}
+				$state = 0;
+			}
+			if ($l > 5000 && $state == 0) {
+				$start = $y;
+				$state = 1;
 			}
 		}
 	}
+
 
 	echo $w;
 	echo ". ";
 	echo $h;
 	echo "\n";
-	processLines();
+	//processLines();
 	cut();
 
 ?>
