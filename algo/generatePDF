@@ -1,7 +1,13 @@
 <?php
 	function generatePDF($strings, $filename) 
 	{
-		$template = "";
+		if ($fileName == "template.tex") {
+			return
+		}
+		
+		copy("template.tex", $filename . ".tex");
+		$texFile = fopen($filename . ".tex");
+		$template = "template.tex";
 		$file = fopen('ids.txt', 'w');
 	}
 ?>

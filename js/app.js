@@ -19,8 +19,15 @@ $(function() {
         tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
     });
 
+    // re-typeset on every keystroke
     $('#input textarea').keyup(function() {
         $('#output').html($(this).val());
         MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+    });
+
+    $('#playbtn').click(function() {
+        $(this).fadeOut(function() {
+            $('#guesser').fadeIn();
+        });
     });
 });
