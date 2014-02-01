@@ -216,6 +216,7 @@ a {
     
 }
 .tex {
+    cursor: pointer;
     background: white;
     color: black;
     min-height: 30px;
@@ -224,7 +225,28 @@ a {
     font-family: 'Computer Modern Serif', 'Arial', sans-serif;
     min-width: 70px;
     height: 35px;
-    margin-left: 19px;
+    margin: 6px;
+
     border-radius: 10px;
     display: inline-block;
+}
+.hwline {
+    max-width: 50%;
+    display: block;
+}
+.hwline.hidden {
+    visibility: hidden;
+}
+
+.lineimg {
+    margin: 6px;
+    border-radius: 10px;
+    max-width: 100%;
+}
+
+.answersWrap {
+    visibility: visible;
+}
+.answersWrap.hidden {
+    visibility: hidden;
 }

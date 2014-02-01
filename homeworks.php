@@ -20,8 +20,9 @@
       }
 
       function generateLine($piece_num, $id) {
-         echo "hi";
          global $db;
+         $image_url = "images/".$id."_".$piece_num.".png";
+         echo "<div class='hwline'> Line: $piece_num <img class='lineimg' src='$image_url'></img> <div class='answersWrap'>";
          //$query = "SELECT * from ANSWERS WHERE id = {$id}";
          $query = $db->prepare('SELECT * from answers where hw_id = :id and piece_num = :piece_num');
          $query->execute(array('id' => $id,
@@ -29,8 +30,13 @@
          $result = $query->fetchAll();
 
          foreach($result as $row) {
-            echo "<div>{$row['id']}, <div class = 'tex'> \$x^2\$ {$row['answer']} </div> </div>";
+            echo "<div class = 'tex'> \$x^2\$ {$row['answer']} </div>";
+            echo "<div class = 'tex'> \$x^2\$ {$row['answer']} </div>";
+            echo "<div class = 'tex'> \$x^2\$ {$row['answer']} </div>";
+            echo "<div class = 'tex'> \$x^2\$ {$row['answer']} </div>";
+            echo "<div class = 'tex'> \$x^2\$ {$row['answer']} </div>";
          }
+         echo "</div> </div>";
       }
       generateHWs("jamesyan");
    ?>
