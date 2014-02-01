@@ -44,7 +44,7 @@
          foreach($result as $row) {
             echo "<div class = 'tex' data-n=\"{$piece_num}\" data-text=\"{$row['answer']}\">{$row['answer']}</div>";
          }
-         echo "<div class = 'tex' data-n=\"{$piece_num}\" data-text=\"\">None</div>";
+         echo "<div class = 'tex' data-n=\"{$piece_num}\" data-text=\"\n\">None</div>";
          echo "</div></div>";
       }
       generateHWs($_COOKIE['id']);
