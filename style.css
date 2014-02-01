@@ -99,8 +99,8 @@ a {
 }
 
 #login {
-    width: 200px;
-    height: 100px;
+    width: 225px;
+    height: 140px;
     position: absolute;
     left: 0; right: 0; top: 0; bottom: 0;
     margin: auto;
@@ -118,16 +118,25 @@ a {
 #login input[type=text] {
     width: 100%;
     padding: 3px 5px;
+    color: black;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
 }
 
 #login input[type=submit] {
     border: none;
     outline: none;
-    background: url('images/arrow.png') no-repeat center center;
-    width: 42px;
-    height: 19px;
-    margin-top: 10px;
+    background: url('images/arrows.png') no-repeat center top;
+    width: 45px;
+    height: 20px;
+    margin-top: 24px;
+    position: relative;
+    left: 14px;
     float: right;
+}
+
+#login input[type=submit]:hover {
+    background-position: center bottom;
 }
 
 #play {
@@ -140,13 +149,23 @@ a {
     left: 0; right: 0; top: 0; bottom: 0;
     margin: auto;
     cursor: pointer;
+    width: 400px;
+    height: 140px;
+    text-align: center;
+}
+
+#description {
+    font-size: 64px;
+    color: #29d2bd;
+    word-spacing: -0.1em;
+    -webkit-transform: scale(1, 0.8);
 }
 
 #guesser {
     display: none;
     width: 800px;
     height: 440px;
-    margin: 0 auto;
+    margin: 30px auto 0;
     position: relative;
     background: url('images/type_box.png') no-repeat center center;
 }
@@ -163,9 +182,12 @@ a {
 }
 
 #timer {
-    border: 1px solid black;
-    font-size: 24px;
+    position: absolute;
+    font-size: 48px;
     padding: 3px 5px;
+    color: #bef371;
+    right: 0;
+    top: -60px;
 }
 
 #input textarea {

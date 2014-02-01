@@ -1,7 +1,13 @@
 <? require_once 'header.php'; ?>
       <div id="play">
-        <img src="images/play.png" id="playbtn" />
+        <div id="playbtn">
+          <img src="images/play.png" />
+          <div id="description">Get ready to LaTeX!</div>
+        </div>
         <div class="row" id="guesser">
+          <div id="timer">
+            0:00
+          </div>
           <div id="sample">
             <img src="http://lorempixel.com/765/120/animals" />
           </div>
