@@ -5,7 +5,7 @@
 	$lineIs; 
 	$cuts; 
 	$imgId;
-	$thresh = 0;
+	$thresh = 1000;
 
 	function pixelIntensity($x, $y) {
 		global $img;
@@ -25,7 +25,7 @@
 		global $w, $h, $img, $thresh;
 		$count = 0;
 		for ($i = 0; $i < $w; $i += 1) {
-    		        if (pixelValue($i, $y) >  $thresh && pixelIntensity($i, $y) < 120) {
+			if (pixelValue($i, $y) > $thresh && pixelIntensity($i, $y) < 120) {
 				$count += pixelValue($i, $y);
 			}
 		}
@@ -64,9 +64,9 @@
 
 		for ($y = 0; $y < $h; $y += $step) {
 			$l = lineValue($y);
-			print $l . "\n";
-			if ($l < 5 && $state == 1) {
-				if (($y - $start) > 16) {
+
+			if ($l < 5000 && $state == 1) {
+				if (($y - $start) > 8) {
 					echo ($y);
 					echo "\n";
 					$buffer = ($y-$start)/3;
@@ -76,7 +76,7 @@
 				$state = 0;
 			}
 
-			if ($l > 5 && $state == 0) {
+			if ($l > 5000 && $state == 0) {
 				$start = $y;
 				$state = 1;
 			}
@@ -91,11 +91,9 @@
 		$w = imagesx($img);
 		$h = imagesy($img);
 		imagefilter($img, IMG_FILTER_GRAYSCALE);
-		imagepng($img, "test.png");
 		$lineIs = array($h);
 		$cuts = array();
 		return cut();
 	}
 
-	
 ?>
