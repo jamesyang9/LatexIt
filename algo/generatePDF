@@ -1,0 +1,7 @@
+<?php
+	function generatePDF($strings, $filename) 
+	{
+		$template = "";
+		$file = fopen('ids.txt', 'w');
+	}
+?>
