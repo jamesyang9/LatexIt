@@ -51,7 +51,7 @@ $(function() {
                 $('#guesser').fadeIn();            
 
                 console.log('got start signal');
-                $('#input textarea').attr('disabled', false);
+                $('#input textarea').attr('disabled', false).removeClass('disabled').val('').focus();
                 $('#output').html('');
                 $('#sample img').attr('src', 'images/latex/' + data.hw + '_' + data.piece + '.png');
                 $('#timer').html('0:30');
@@ -87,9 +87,9 @@ $(function() {
         $('#input textarea').keydown(function(e) {
             if (e.which == 13) {
                 socket.emit('answer', $(this).val());
-                $(this).val('');
+                $(this).val('Submitted, wait for other players...');
                 $(this).attr('placeholder', '');
-                $(this).attr('disabled', true);
+                $(this).attr('disabled', true).addClass('disabled');
                 clearInterval(timer);
             }
         });

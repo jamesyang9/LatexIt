@@ -104,9 +104,11 @@ io.sockets.on('connection', function (socket) {
     });
 
     socket.on('answer', function(text) {
-        var stmt = db.prepare('INSERT INTO answers (hw_id, answerer_id, answer, piece_num) VALUES(?, ?, ?, ?)');
-        stmt.run(socket.room.hw, socket.user_id, text, socket.room.piece);
-        stmt.finalize()
+        if (text.trim() !== '') {
+            var stmt = db.prepare('INSERT INTO answers (hw_id, answerer_id, answer, piece_num) VALUES(?, ?, ?, ?)');
+            stmt.run(socket.room.hw, socket.user_id, text, socket.room.piece);
+            stmt.finalize();
+        }
 
         socket.answer_time = new Date().getTime() - socket.room.time;
         socket.text = text;

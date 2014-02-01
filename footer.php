@@ -1,3 +1,4 @@
+      <img src="images/footer.png" />
     </div>
     <script src="https://www.dropbox.com/static/api/2/dropins.js" id="dropboxjs" data-app-key="kgnjjrr9ywdj8z5"></script>
     <script src="http://code.jquery.com/jquery-latest.js"></script>

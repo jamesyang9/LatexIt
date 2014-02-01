@@ -23,7 +23,4 @@
           </div>
         </div>
       </div>
-      <div>
-        <img src="images/tops.png" />
-      </div>
 <? require_once 'footer.php'; ?>

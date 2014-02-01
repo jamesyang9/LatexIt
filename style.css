@@ -225,6 +225,10 @@ a {
     border-top-right-radius: 10px;
 }
 
+#input textarea.disabled {
+    background-color: #ccc;
+}
+
 #output {
     background: white;
     color: black;
@@ -287,7 +291,7 @@ a {
 }
 
 .selected {
-    background: yellow;
+    background: #bdf271;
 }
 
 .lineimg {
