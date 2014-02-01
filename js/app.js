@@ -20,7 +20,6 @@ $(function() {
             $.post('upload.php', {file: img}, function(data) {
                 console.log(data);
                 //window.location.reload();
-                // todo: things here
             });
         }
     });
