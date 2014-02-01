@@ -43,7 +43,11 @@
    
    <div class="rhalf"> 
       <div style="float:left">Preview</div>
-      <div id="generatePDF" style="float:right">Generate PDF</div>
+      <div style="float:right">
+         <div id="generatePDF">Generate PDF</div>
+         <div id="generateTEX">Generate TeX</div>
+      </div>
+      
       <div id="preview" class="tex preview">
          <?php
             for ($i = 0; $i < $hack_num_lines; $i++) {

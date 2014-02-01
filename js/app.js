@@ -105,12 +105,27 @@ $(function() {
     }
 
     $('#generatePDF').click(function () {
+        console.log(globalData.texSeq);
         if(!isComplete()) {
             alert('Please make a choice for every line');
+            return;
         };
         $.post('algo/generatePDF.php', {'arr': globalData.texSeq, 'id': 54})
         .done(function () {
             window.open("algo/54.pdf");
         });
     });
+
+    $('#generateTEX').click(function () {
+        console.log(globalData.texSeq);
+        if(!isComplete()) {
+            alert('Please make a choice for every line');
+            return;
+        };
+        $.post('algo/generatePDF.php', {'arr': globalData.texSeq, 'id': 54})
+        .done(function () {
+            window.open("algo/54.tex");
+        });
+    });
+
 });
