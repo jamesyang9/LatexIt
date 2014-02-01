@@ -6,3 +6,5 @@ algo/54.tex
 *.tex
 
 *.log
+
+*.db
