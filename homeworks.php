@@ -14,13 +14,13 @@
       function generateHWs($uid) {
          global $db, $hack_num_lines;
          //$query = "SELECT * from ANSWERS WHERE id = {$id}";
-         $query = $db->prepare('DELETE FROM answers WHERE answer = ""');
-         $query->execute();
+         //$query = $db->prepare('DELETE FROM answers WHERE answer = ""');
+         //$query->execute();
          $query = $db->prepare('SELECT * FROM homeworks WHERE user_id = :user_id');
          $query->execute(array('user_id' => $_COOKIE['id']));
          $result = $query->fetchAll();
          if ($result) {
-            $result = $result[0];
+            $result = $result[count($result) - 1];
 
             for($i = 0; $i < $result['num_pieces']; $i++) {
                generateLine($i, $result['id']);

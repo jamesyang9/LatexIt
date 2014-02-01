@@ -346,8 +346,6 @@ a {
 }
 
 .answersWrap {
-    overflow-y: scroll;
-    overflow-x: visible;
     visibility: visible;
 }
 
@@ -390,7 +388,7 @@ a {
 .preview {
     width: 100%;
     top: 0px;
-    min-height: 500px;
+    min-height: 300px;
     opacity: .9;
 }
 
