@@ -45,7 +45,9 @@
    ?>
    </div>
    
-   <div class="rhalf"> Preview 
+   <div class="rhalf"> 
+      <div style="float:left">Preview</div>
+      <div id="generatePDF" style="float:right">Generate PDF</div>
       <div id="preview" class="tex preview">
          <?php
             for ($i = 0; $i < $hack_num_lines; $i++) {
@@ -54,6 +56,7 @@
          ?>
       </div>
    </div>
+   Complete
 
 
    </div>

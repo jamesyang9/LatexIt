@@ -1,4 +1,7 @@
 $(function() {
+    var globalData = new Object();
+
+    globalData.texSeq = [];
 
     // set up dropbox uploads
     var button = Dropbox.createChooseButton({
@@ -66,8 +69,28 @@ $(function() {
     $('.hwline .tex').click(function () {
         var idx = $(this).data('n');
         var text = $(this).data('text');
+        console.log(idx);
+        globalData.texSeq[idx] = text;
+        console.log(globalData);
         $('#preview div:nth-child('+(idx+1)+')').html(text);
         $(this).parent().children().removeClass('selected');
         $(this).addClass('selected');
+        console.log(isComplete());
+    });
+
+    function isComplete() {
+        for(var i = 0; i < $('.hwline').length; i++) {
+            if (!globalData.texSeq[i]) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    $('#generatePDF').click(function () {
+        if(!isComplete()) {
+            alert('Please make a choice for every line');
+        };
+
     });
 });

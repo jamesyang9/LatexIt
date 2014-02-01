@@ -274,7 +274,9 @@ a {
 .answersWrap.hidden {
     visibility: hidden;
 }
-
+#generatePDF{
+    cursor: pointer;
+}
 .selected {
     background: yellow;
 }
