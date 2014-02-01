@@ -5,11 +5,11 @@
 	$grayscale = imagefilter($img, IMG_FILTER_GRAYSCALE);
 
 	function pixelIntenxity($x, $y) {
-		global $w, $h;
+		global $w, $h, $img, $imgg;
 	}
 
 	function pixelValue($x, $y) {
-		
+
 	}
 
 	function lineValue($x, $y) {
