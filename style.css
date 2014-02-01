@@ -226,12 +226,12 @@ a {
     min-width: 70px;
     height: 35px;
     margin: 6px;
-
     border-radius: 10px;
     display: inline-block;
 }
+
 .hwline {
-    max-width: 50%;
+    max-width: 100%;
     display: block;
 }
 .hwline.hidden {
@@ -244,9 +244,35 @@ a {
     max-width: 100%;
 }
 
+.lhalf {
+    width: 48%;
+    display: inline-block;
+    float: left;
+    height: 100%;
+    top: 0px;
+}
+.preview {
+    width: 100%;
+    top: 0px;
+    min-height: 500px;
+    opacity: .5;
+}
+
+.rhalf {
+    width: 48%;
+    display: inline-block;
+    float: right;
+    height: 100%;
+    top: 0px;
+}
+
 .answersWrap {
     visibility: visible;
 }
 .answersWrap.hidden {
     visibility: hidden;
+}
+
+.selected {
+    background: yellow;
 }

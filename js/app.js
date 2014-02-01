@@ -36,4 +36,12 @@ $(function() {
             });
         });
     });
+
+    $('.hwline .tex').click(function () {
+        var idx = $(this).data('n');
+        var text = $(this).data('text');
+        $('#preview div:nth-child('+(idx+1)+')').html(text);
+        $(this).parent().children().removeClass('selected');
+        $(this).addClass('selected');
+    });
 });

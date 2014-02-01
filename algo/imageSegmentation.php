@@ -91,7 +91,7 @@
 		$w = imagesx($img);
 		$h = imagesy($img);
 		imagefilter($img, IMG_FILTER_GRAYSCALE);
-		$lineIs = array(h);
+		$lineIs = array($h);
 		$cuts = array();
 		return cut();
 	}
