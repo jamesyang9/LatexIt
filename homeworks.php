@@ -16,22 +16,26 @@
          //$query = "SELECT * from ANSWERS WHERE id = {$id}";
          $query = $db->prepare('DELETE FROM answers WHERE answer = ""');
          $query->execute();
-         $query = $db->prepare('SELECT * from homeworks where user_id = :uid');
-         $query->execute(
-            array('uid' => $uid)
-         );
-         $result = $query->fetchAll()[0];
-         for($i = 0; $i < $result['num_pieces']; $i++) {
-            generateLine($i, $result['id']);
+         $query = $db->prepare('SELECT * FROM homeworks WHERE user_id = :user_id');
+         $query->execute(array('user_id' => $_COOKIE['id']));
+         $result = $query->fetchAll();
+         if ($result) {
+            $result = $result[0];
+
+            for($i = 0; $i < $result['num_pieces']; $i++) {
+               generateLine($i, $result['id']);
+            }
+            $hack_num_lines = $result['num_pieces'];
          }
-         $hack_num_lines = $result['num_pieces'];
+         else {
+            echo "<center><h1 id ='noFiles'>No files uploaded yet</h1></center>";
+         }
       }
 
       function generateLine($piece_num, $id) {
          global $db;
          $image_url = "images/latex/".$id."_".$piece_num.".png";
          echo "<div class='hwline'> Line: $piece_num <img class='lineimg' src='$image_url'></img> <div class='answersWrap'>";
-         //$query = "SELECT * from ANSWERS WHERE id = {$id}";
          $query = $db->prepare('SELECT * from answers where hw_id = :id and piece_num = :piece_num');
          $query->execute(array('id' => $id,
             'piece_num' => $piece_num));
@@ -40,6 +44,7 @@
          foreach($result as $row) {
             echo "<div class = 'tex' data-n=\"{$piece_num}\" data-text=\"{$row['answer']}\">{$row['answer']}</div>";
          }
+         echo "<div class = 'tex' data-n=\"{$piece_num}\" data-text=\"\">None</div>";
          echo "</div></div>";
       }
       generateHWs($_COOKIE['id']);
