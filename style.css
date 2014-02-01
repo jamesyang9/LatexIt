@@ -1,5 +1,37 @@
 * { margin: 0; padding: 0; }
 
+#login {
+    width: 200px;
+    height: 100px;
+    position: absolute;
+    left: 0; right: 0; top: 0; bottom: 0;
+    margin: auto;
+}
+
+#login #logo {
+    margin-bottom: 15px;
+}
+
+#logo span {
+    font-size: 40px;
+    vertical-align: bottom;
+}
+
+#login input[type=text] {
+    width: 100%;
+    padding: 3px 5px;
+}
+
+#login input[type=submit] {
+    border: none;
+    outline: none;
+    background: url('images/arrow.png') no-repeat center center;
+    width: 42px;
+    height: 19px;
+    margin-top: 10px;
+    float: right;
+}
+
 #guesser > div {
     margin-bottom: 10px;
 }
