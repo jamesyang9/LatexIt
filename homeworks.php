@@ -49,7 +49,7 @@
       <div id="preview" class="tex preview">
          <?php
             for ($i = 0; $i < $hack_num_lines; $i++) {
-               echo "<div>s</div>";
+               echo "<div> </div>";
             }
          ?>
       </div>
