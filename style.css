@@ -59,8 +59,8 @@
 * { margin: 0; padding: 0; }
 
 body {
-    background-color: #2F2933;
-    color: #ffff86;
+    background: #2F2933 url('images/background.png') no-repeat center 100px;
+    color: #ffffa6;
     font-family: 'handwritten', Arial, sans-serif;
     font-size: 24px;
     padding-top: 20px;
@@ -71,7 +71,7 @@ h1, h2, h3 {
 }
 
 a {
-    color: #ffff86;
+    color: #ffffa6;
     font-size: 40px;
 }
 
@@ -214,4 +214,17 @@ a {
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 40px;
     
+}
+.tex {
+    background: white;
+    color: black;
+    min-height: 30px;
+    padding: 5px;
+    padding-left: 10px;
+    font-family: 'Computer Modern Serif', 'Arial', sans-serif;
+    min-width: 70px;
+    height: 35px;
+    margin-left: 19px;
+    border-radius: 10px;
+    display: inline-block;
 }

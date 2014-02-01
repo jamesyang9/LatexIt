@@ -1,0 +1,24 @@
+{
+  "name": "LatexIt",
+  "version": "0.0.0",
+  "description": "",
+  "main": "socket.js",
+  "dependencies": {
+    "socket.io": "~0.9.16",
+    "sqlite3": "~2.2.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jamesyang9/LatexIt"
+  },
+  "author": "",
+  "license": "BSD",
+  "gitHead": "ae7644629fe1e23fd8963cea8c43ddce882f4119",
+  "bugs": {
+    "url": "https://github.com/jamesyang9/LatexIt/issues"
+  }
+}

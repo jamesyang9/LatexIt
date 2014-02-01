@@ -25,9 +25,15 @@ $(function() {
         MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
     });
 
+    // set up play button
     $('#playbtn').click(function() {
         $(this).fadeOut(function() {
             $('#guesser').fadeIn();
+
+            var socket = io.connect('http://localhost:8000');
+            socket.on('news', function (data) {
+                console.log(data);
+            });
         });
     });
 });
