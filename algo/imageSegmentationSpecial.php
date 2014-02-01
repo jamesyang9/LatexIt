@@ -97,5 +97,7 @@
 		return cut();
 	}
 
+
+	print cutImage(18, "images/a-8.png");
 	
 ?>

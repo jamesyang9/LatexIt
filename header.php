@@ -23,7 +23,7 @@ if (!array_key_exists('id', $_COOKIE) && !$posted && $page != 'login.php') {
     <div class="navbar">
       <div class="container">
         <div class="navbar-header">
-          <a class="navbar-brand" href="index.php">LatexIt</a>
+          <a class="navbar-brand" href="index.php"><img src="images/logo.png"></a>
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
@@ -32,7 +32,7 @@ if (!array_key_exists('id', $_COOKIE) && !$posted && $page != 'login.php') {
           </ul>
           <div class="navbar-right">
             <ul class="nav navbar-nav">
-              <li><a href="#"><?= $_COOKIE['name']; ?></a></li>
+              <li><span><?= $_COOKIE['name']; ?></span></li>
             </ul>
           </div>
         </div>

@@ -15,6 +15,7 @@ $(function() {
             var img = files[0].link;
             $.post('upload.php', {file: img}, function(data) {
                 console.log(data);
+                //window.location.reload();
                 // todo: things here
             });
         }
@@ -50,15 +51,16 @@ $(function() {
         socket.emit('info', {'id': USER_ID, 'name': USER_NAME});
         var timer;
         socket.on('start', function(data) {
-            $('#playbtn').fadeOut(function() {
+            $('#playbtn, #scoreboard').fadeOut(function() {
                 $('#guesser').fadeIn();            
 
                 console.log('got start signal');
-                $('#input textarea').attr('disabled', false);
+                $('#input textarea').attr('disabled', false).removeClass('disabled').val('').focus();
                 $('#output').html('');
                 $('#sample img').attr('src', 'images/latex/' + data.hw + '_' + data.piece + '.png');
                 $('#timer').html('0:30');
                 $('#timer').data('time', 30)
+                clearInterval(timer);
                 timer = setInterval(function() { 
                     var time = $('#timer').data('time') - 1;
                     $('#timer').data('time', time);
@@ -73,15 +75,25 @@ $(function() {
         });
 
         socket.on('finished', function(scoreboard) {
-            console.log('finished', scoreboard);
+            $('#guesser').fadeOut(function() {
+                $('#scoreboard').fadeIn();
+                $('#scores').html('');
+                scoreboard.forEach(function(score) {
+                    $('#scores').append('<li>' + score.name + ': ' + score.score + '</li>');
+                });
+            });
+        });
+
+        socket.on('nodata', function() {
+            console.log('fail');
         });
         
         $('#input textarea').keydown(function(e) {
             if (e.which == 13) {
                 socket.emit('answer', $(this).val());
-                $(this).val('');
+                $(this).val('Submitted, wait for other players...');
                 $(this).attr('placeholder', '');
-                $(this).attr('disabled', true);
+                $(this).attr('disabled', true).addClass('disabled');
                 clearInterval(timer);
             }
         });
