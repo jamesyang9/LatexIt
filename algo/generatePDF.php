@@ -13,8 +13,8 @@
 		}
 		fwrite($texFile, "\n\n\\end{document}");
 		fclose($texFile);
-		exec("pdfLatex ")
+		shell_exec("pdflatex ". $filename . ".tex");
 	}
-	$strs = array("this", "is", "my", "file");
+	$strs = array("$4x^2 \\sum_{i=0}^9 i^2$", "is", "my", "file");
 	generatePDF($strs, "output");
 ?>
