@@ -92,6 +92,9 @@ $(function() {
         if(!isComplete()) {
             alert('Please make a choice for every line');
         };
-
+        $.post('algo/generatePDF.php', {'arr': globalData.texSeq, 'id': 54})
+        .done(function () {
+            window.open("algo/54.pdf", "popupWindow", "");
+        });
     });
 });

@@ -239,26 +239,6 @@ a {
     visibility: hidden;
 }
 
-.lineimg {
-    margin: 6px;
-    border-radius: 10px;
-    max-width: 100%;
-}
-
-.lhalf {
-    width: 48%;
-    display: inline-block;
-    float: left;
-    height: 100%;
-    top: 0px;
-}
-.preview {
-    width: 100%;
-    top: 0px;
-    min-height: 500px;
-    opacity: .5;
-}
-
 .rhalf {
     width: 48%;
     display: inline-block;
@@ -279,3 +259,24 @@ a {
 .selected {
     background: yellow;
 }
+
+.lineimg {
+    margin: 6px;
+    border-radius: 10px;
+    max-width: 100%;
+}
+
+.lhalf {
+    width: 48%;
+    display: inline-block;
+    float: left;
+    height: 100%;
+    top: 0px;
+}
+.preview {
+    width: 100%;
+    top: 0px;
+    min-height: 500px;
+    opacity: .5;
+}
+
