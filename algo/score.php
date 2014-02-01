@@ -72,7 +72,9 @@ function vectorize($sentence){
 	  return $scores;
 	}
 
-	print json_encode(score(json_decode($argv[1])));
+	$stringFile = fread(fopen($argv[1], 'r'), 1000);
+	$entries = array_slice(explode("\n", $stringFile), 0, $argv[2]);
+	print json_encode(score($entries));
 
 
 ?>
