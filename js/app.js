@@ -10,7 +10,7 @@ $(function() {
         success: function(files) {
             var img = files[0].link;
             $.post('upload.php', {file: img}, function(data) {
-                console.log(data);
+                window.location.reload();
                 // todo: things here
             });
         }
