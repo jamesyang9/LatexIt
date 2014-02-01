@@ -66,6 +66,10 @@ $(function() {
             });
         });
 
+        socket.on('finished', function(scoreboard) {
+            console.log('finished', scoreboard);
+        });
+        
         $('#input textarea').keydown(function(e) {
             if (e.which == 13) {
                 socket.emit('answer', $(this).val());

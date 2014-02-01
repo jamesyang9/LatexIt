@@ -1,5 +1,6 @@
 var io = require('socket.io').listen(8000);
 var RWL = require('rwlock');
+var exec = require('child_process').exec;
 var sqlite3 = require('sqlite3').verbose();
 var db = new sqlite3.Database('db/site.db');
 
@@ -92,15 +93,36 @@ io.sockets.on('connection', function (socket) {
         stmt.run(socket.room.hw, socket.user_id, text, socket.room.piece);
         stmt.finalize()
 
+        socket.answer_time = new Date().getTime() - socket.room.time;
+        socket.text = text;
+
         socket.room.answers++;
         if (socket.room.answers == socket.room.users.length) {
             // check if all answers are in for a given picture and set completed to true if so
             // TODO ^
 
             console.log('Room finished');
-
+            var times = [];
             socket.room.users.forEach(function(user) {
-                user.emit('finished', 'lol');
+                times.push(user);
+            });
+
+            times.sort(function(a, b) {
+                return a.answer_time < b.answer_time;
+            });
+
+            var scoreboard = {};
+            var just_times = times.map(function(l){ return l.answer_time; });
+            for (var i = 0; i < times.length; i++) {
+                var score = 10;
+                var stmt = db.prepare('UPDATE answers SET score = ? WHERE answerer_id = ? AND hw_id = ?');
+                stmt.run(score, socket.user_id, socket.room.hw);
+                scoreboard[times[i].user_name] = score;
+            }
+            stmt.finalize()
+            
+            socket.room.users.forEach(function(user) {
+                user.emit('finished', scoreboard);
                 assign(user);
             });
         }
