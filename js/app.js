@@ -76,6 +76,7 @@ $(function() {
         $(this).parent().children().removeClass('selected');
         $(this).addClass('selected');
         console.log(isComplete());
+        MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
     });
 
     function isComplete() {

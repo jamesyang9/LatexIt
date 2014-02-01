@@ -33,11 +33,7 @@
          $result = $query->fetchAll();
 
          foreach($result as $row) {
-            echo "<div class = 'tex' data-n=\"{$piece_num}\" data-text=\"{$row['answer']}\"> \$x^2\$ {$row['answer']} </div>";
-            echo "<div class = 'tex' data-n=\"{$piece_num}\" data-text=\"{$row['answer']}\"> \$x^2\$ {$row['answer']} </div>";
-            echo "<div class = 'tex' data-n=\"{$piece_num}\" data-text=\"{$row['answer']}\"> \$x^2\$ {$row['answer']} </div>";
-            echo "<div class = 'tex' data-n=\"{$piece_num}\" data-text=\"{$row['answer']}\"> \$x^2\$ {$row['answer']} </div>";
-            echo "<div class = 'tex' data-n=\"{$piece_num}\" data-text=\"{$row['answer']}\"> \$x^2\$ {$row['answer']} </div>";
+            echo "<div class = 'tex' data-n=\"{$piece_num}\" data-text=\"{$row['answer']}\">{$row['answer']}</div>";
          }
          echo "</div></div>";
       }
@@ -56,8 +52,6 @@
          ?>
       </div>
    </div>
-   Complete
-
 
    </div>
 <? require_once 'footer.php'; ?>

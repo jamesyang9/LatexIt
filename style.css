@@ -221,12 +221,11 @@ a {
     cursor: pointer;
     background: white;
     color: black;
-    min-height: 30px;
+    min-height: 35px;
     padding: 5px;
     padding-left: 10px;
     font-family: 'Computer Modern Serif', 'Arial', sans-serif;
-    min-width: 70px;
-    height: 35px;
+    min-width: 35px;
     margin: 6px;
     border-radius: 10px;
     display: inline-block;
