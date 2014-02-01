@@ -12,7 +12,7 @@ var users = [];
 temp.track();
 
 function active(room) {
-    return room.users.length >= 3;
+    return room.users.length >= 4;
 }
 
 var lock = new RWL();
@@ -139,7 +139,7 @@ io.sockets.on('connection', function (socket) {
                             var score = scores[i];
                             var stmt = db.prepare('UPDATE answers SET score = ? WHERE answerer_id = ? AND hw_id = ?');
                             stmt.run(score, socket.user_id, socket.room.hw);
-                            scoreboard.push({name:times[i].user_name, score: score});
+                            scoreboard.push({id:times[i].user_id, name:times[i].user_name, score: score});
                         }
                         stmt.finalize()
                         
@@ -148,7 +148,7 @@ io.sockets.on('connection', function (socket) {
                             setTimeout(function() {
                                 console.log(user.user_name + ' getting reassigned');
                                 assign(user);
-                            }, 7000);
+                            }, 2000);
                         });
                     });
                     

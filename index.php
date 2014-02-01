@@ -10,6 +10,9 @@
           </ol>
         </div>
         <div class="row" id="guesser">
+          <div id="scoreflash">
+            +10
+          </div>
           <div id="timer">
             0:00
           </div>

@@ -54,7 +54,7 @@ $(function() {
         socket.emit('info', {'id': USER_ID, 'name': USER_NAME});
         var timer;
         socket.on('start', function(data) {
-            $('#playbtn, #scoreboard, #tops').fadeOut(function() {
+            $('#playbtn, #scoreboard, #tops, #scoreflash').fadeOut(function() {
                 $('#guesser').fadeIn();            
 
                 console.log('got start signal');
@@ -78,13 +78,23 @@ $(function() {
         });
 
         socket.on('finished', function(scoreboard) {
-            $('#guesser').fadeOut(function() {
-                $('#scoreboard').fadeIn();
+            //$('#guesser').fadeOut(function() {
+                /*$('#scoreboard').fadeIn();
                 $('#scores').html('');
                 scoreboard.forEach(function(score) {
                     $('#scores').append('<li>' + score.name + ': ' + score.score + '</li>');
+                });*/
+
+                var myScore = 0;
+                scoreboard.forEach(function(score) {
+                    if (score.id == USER_ID) {
+                        myScore = score.score;
+                    }
                 });
-            });
+
+                $('#scoreflash').html('+' + myScore);
+                $('#scoreflash').fadeIn(300).delay(1200).fadeOut(300);
+            //});
         });
 
         socket.on('nodata', function() {
