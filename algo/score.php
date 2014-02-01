@@ -1,13 +1,18 @@
 <?php
 	function vectorize($sentence){
-	$sentence = preg_replace('/\s+/', '', $sentence);
-	// replace stuff that's {c}
-	//Uses two-char sequences.
+	$sentence = preg_replace('/[\s|$]+/', '', $sentence);
+	// remove all $ because they're just delimiters and you would fail if you had them.
 	$sentenceLength = strlen($sentence);
+
+	//special case
+	if($sentenceLength < 2){
+	$sentence = $sentence . " ";
+	$sentenceLength = 2;
+	}
+
 	$biletters = array();
 	for($i = 0; $i < $sentenceLength -1; $i++){
 	  $bilet = substr($sentence, $i, 2);
-	   //print $bilet . "\n";
 	  if (array_key_exists($bilet, $biletters)){
  	     $biletters[$bilet]++;
 	  }	
@@ -46,36 +51,24 @@
 	$numPlayers = count($dataset);
 	for($i = 0; $i < $numPlayers; $i++){
 	  $temp = dotProduct($thisfrq, $translatedFrq[$i]);
-	  //print $temp .", " ;
 	  $similarity += $temp;
 	}
 	$similarity = $similarity/$numPlayers;
-	print $similarity . " ";
 	return $similarity;
 	}
-	//time awards between 50 and 100 base. Correction between (0.0, 1.0)
-	//$ideally times would be sorted, so index is also the place.
+
+	//time awards between 0 and 100 base. Correction between (0.0, 1.0)
+	//ideally times would be sorted, so index is also the place.
 	//|$times| = |$translatedStrings| or else will fail.!!!!!
+
 	function score($times, $translatedStrings, $index) {
 	$thisTime = $times[$index];
 	$thisString = $translatedStrings[$index];
 	$numPlayers = count($times);
 	$thisScore = max(10*$numPlayers, 20*($numPlayers - $index));
-	//between 0 and 1
+
 	$similarity = cosine($thisString, $translatedStrings);	
 	return $thisScore*$similarity;
 	}
-
-	$time = array(1, 2, 3,4);
-	$data = array("$\sum_{i=1}^n 2 x ^ i$", "$\prod_{i=1}^n2x^{i}$"," $\sum_{i = 1} ^ n zx ^ i $ ", "$\sum_{i=1}^n 2x^i$");
-	$sample =  "$\sum_{i=1}^n 2x^i$"; //"$2\sum_{i=1}^n x^i$" maybe with 2y
-	$keys = array_keys($frq);
-
-	for($i = 0; $i < 4; $i++){
-          print score($time, $data, $i);
-	  print "\n";        
-	}
-
-	print cosine($sample, $data);
 
 ?>
