@@ -3,6 +3,10 @@ $(function() {
 
     globalData.texSeq = [];
 
+    if($("#noFiles").length) {
+        $(".rhalf").show();
+    }
+    
     // set up dropbox uploads
     var button = Dropbox.createChooseButton({
         linkType: 'direct',
