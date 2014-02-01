@@ -47,7 +47,7 @@ $(function() {
         socket.emit('info', {'id': USER_ID, 'name': USER_NAME});
         var timer;
         socket.on('start', function(data) {
-            $('#playbtn, #scoreboard').fadeOut(function() {
+            $('#playbtn, #scoreboard, #tops').fadeOut(function() {
                 $('#guesser').fadeIn();            
 
                 console.log('got start signal');

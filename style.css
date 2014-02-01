@@ -72,6 +72,7 @@ h1, h2, h3 {
 
 .container {
     width: 1000px;
+    position: relative;
 }
 
 a {
@@ -99,7 +100,7 @@ a {
     text-transform: lowercase;
     font-size: 36px;
     letter-spacing: 1.5px;
-    margin-left: 220px;
+    margin-left: 250px;
     position: relative;
     top: 8px;
 }
@@ -168,6 +169,7 @@ a {
     cursor: pointer;
     width: 400px;
     height: 140px;
+    margin-top: 60px;
     text-align: center;
 }
 
@@ -240,8 +242,21 @@ a {
     margin-left: 19px;
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 40px;
-    
 }
+
+#footer {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    margin-left: -450px;
+}
+
+#tops {
+    position: relative;
+    right: 30px;
+    bottom: 15px;
+}
+
 .tex {
     cursor: pointer;
     background: white;

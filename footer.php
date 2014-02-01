@@ -1,4 +1,7 @@
-      <img src="images/footer.png" />
+      <div id="footer">
+        <img src="images/tops.png" id="tops" />
+        <img src="images/footer.png" />
+      </div>
     </div>
     <script src="https://www.dropbox.com/static/api/2/dropins.js" id="dropboxjs" data-app-key="kgnjjrr9ywdj8z5"></script>
     <script src="http://code.jquery.com/jquery-latest.js"></script>
