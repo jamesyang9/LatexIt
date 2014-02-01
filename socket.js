@@ -21,6 +21,7 @@ function assign(user) {
             if (!room.running && !active(room)) {
                 room.users.push(user);
                 user.room = room;
+                console.log('Adding ' + user.user_name + ' to room');
                 
                 if (active(room)) {
                     start(room);
@@ -114,8 +115,9 @@ io.sockets.on('connection', function (socket) {
             var scoreboard = [];
             var just_text = times.map(function(u){ return u.text; });
 
-            console.log('Execing', "php algo/score.php '" + JSON.stringify(just_text) + "'");
-            exec("php algo/score.php '" + JSON.stringify(just_text) + "'", function(error, stdout, stderr) {
+            var json = JSON.stringify(just_text).replace("'", "\\'");
+            console.log('Execing', "php algo/score.php '" + json + "'");
+            exec("php algo/score.php '" + json + "'", function(error, stdout, stderr) {
                 var scores = JSON.parse(stdout);
                 
                 for (var i = 0; i < times.length; i++) {
@@ -129,6 +131,7 @@ io.sockets.on('connection', function (socket) {
                 socket.room.users.forEach(function(user) {
                     user.emit('finished', scoreboard);
                     setTimeout(function() {
+                        console.log(user.user_name + ' getting reassigned');
                         assign(user);
                     }, 7000);
                 });
