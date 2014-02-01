@@ -112,7 +112,13 @@ io.sockets.on('connection', function (socket) {
             });
 
             var scoreboard = {};
-            var just_times = times.map(function(l){ return l.answer_time; });
+            var just_text = times.map(function(u){ return u.text; });
+
+            console.log('Execing', "php algo/score.php '" + JSON.stringify(just_text) + "'");
+            exec("php algo/score.php '" + JSON.stringify(just_text) + "'", function(error, stdout, stderr) {
+                console.log(stdout);
+            });
+
             for (var i = 0; i < times.length; i++) {
                 var score = 10;
                 var stmt = db.prepare('UPDATE answers SET score = ? WHERE answerer_id = ? AND hw_id = ?');
