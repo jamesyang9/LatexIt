@@ -6,6 +6,7 @@
 
 	function pixelIntenxity($x, $y) {
 		global $imgg;
+		print(imagecolorat($imgg, $x, $y));
 		return imagecolorat($imgg, $x, $y);
 	}
 
