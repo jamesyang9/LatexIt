@@ -215,3 +215,16 @@ a {
     border-bottom-right-radius: 40px;
     
 }
+.tex {
+    background: white;
+    color: black;
+    min-height: 30px;
+    padding: 5px;
+    padding-left: 10px;
+    font-family: 'Computer Modern Serif', 'Arial', sans-serif;
+    min-width: 70px;
+    height: 35px;
+    margin-left: 19px;
+    border-radius: 10px;
+    display: inline-block;
+}
