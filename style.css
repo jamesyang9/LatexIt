@@ -63,7 +63,7 @@ body {
     color: #ffffa6;
     font-family: 'handwritten', Arial, sans-serif;
     font-size: 24px;
-    padding-top: 20px;
+    padding-top: 30px;
 }
 
 h1, h2, h3 {
@@ -86,13 +86,20 @@ a {
 
 .navbar-brand {
     font-size: 40px;
+    position: relative;
+}
+
+.navbar-brand img {
+    position: absolute;
+    left: 10px;
+    top: -11px;
 }
 
 .navbar a {
     text-transform: lowercase;
     font-size: 36px;
     letter-spacing: 1.5px;
-    margin-left: 207px;
+    margin-left: 220px;
     position: relative;
     top: 8px;
 }
@@ -100,6 +107,12 @@ a {
 .navbar a:hover {
     background: transparent!important;
     color: white;
+}
+
+.navbar span {
+    font-size: 40px;
+    position: relative;
+    top: 5px;
 }
 
 #login {
