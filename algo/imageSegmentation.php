@@ -1,12 +1,11 @@
 <?php
-	$img = imagecreatefrompng("photo-2.png");
-	$w = imagesx($img);
-	$h = imagesy($img);
-	$thresh = 3600;
-	//imagefilter($img, IMG_FILTER_CONTRAST, 20);
-	imagefilter($img, IMG_FILTER_GRAYSCALE);
-	$lineIs = array(h);
-	$cuts = array();
+	$img;
+	$w; 
+	$h; 
+	$lineIs; 
+	$cuts; 
+	$imgId;
+	$thresh = 1000;
 
 	function pixelIntensity($x, $y) {
 		global $img;
@@ -44,7 +43,7 @@
 	}
 
 	function outputPNG($y1, $y2, $sliceNum){
-		global $lineIs, $img, $w, $h, $cuts;
+		global $lineIs, $img, $w, $h, $cuts, $imgId;
         $dst_w = $w;
         $dst_h = $y2 - $y1;
         $src_x = 0;
@@ -53,7 +52,7 @@
 		$dst_y = 0;
 	 	$outImg = imagecreate($w, $dst_h);
  		imagecopyresampled($outImg, $img, $dst_x, $dst_y, $src_x, $src_y, $dst_w, $dst_h, $dst_w, $dst_h);
-		imagepng($outImg, "img" . $sliceNum . ".png");
+		imagepng($outImg, $imgId . "_" . $sliceNum . ".png");
 	}
 
 	function cut() {
@@ -63,31 +62,45 @@
 		$start = 0;
 		$state = 0;
 
-		for ($y = 0; $y < $h - 10; $y += $step) {
+		for ($y = 0; $y < $h; $y += $step) {
 			$l = lineValue($y);
 
 			if ($l < 5000 && $state == 1) {
 				if (($y - $start) > 8) {
 					echo ($y);
 					echo "\n";
-					outputPNG(max(0, $start - 10), $y + 10, $sliceNum);
+					$buffer = ($y-$start)/3;
+					outputPNG(max(0, $start - $buffer), min($h - 1, $y + $buffer), $sliceNum);
 					$sliceNum += 1;
 				}
 				$state = 0;
 			}
+
 			if ($l > 5000 && $state == 0) {
 				$start = $y;
 				$state = 1;
 			}
 		}
+		return $sliceNum;
 	}
 
+	function cutImage($id, $filename) {
+		global $img, $w, $h, $lineIs, $cuts, $thresh, $imgId;
+		$imgId = $id;
+		$img = imagecreatefrompng($filename);
+		$w = imagesx($img);
+		$h = imagesy($img);
+		imagefilter($img, IMG_FILTER_GRAYSCALE);
+		$lineIs = array(h);
+		$cuts = array();
+		return cut();
+	}
 
-	echo $w;
-	echo ". ";
-	echo $h;
-	echo "\n";
+	//echo $w;
+	//echo ". ";
+	//echo $h;
+	//echo "\n";
 	//processLines();
-	cut();
+	cutImage(100, "photo-2.png");
 
 ?>
