@@ -154,11 +154,15 @@ a {
     text-align: center;
 }
 
-#description {
+#description, #waiting {
     font-size: 64px;
     color: #29d2bd;
     word-spacing: -0.1em;
     -webkit-transform: scale(1, 0.8);
+}
+
+#waiting {
+    display: none;
 }
 
 #guesser {
@@ -179,6 +183,8 @@ a {
 
 #sample img {
     border-radius: 20px;
+    width: 765px;
+    height: 120px;
 }
 
 #timer {
@@ -216,6 +222,7 @@ a {
     
 }
 .tex {
+    cursor: pointer;
     background: white;
     color: black;
     min-height: 30px;
@@ -224,7 +231,56 @@ a {
     font-family: 'Computer Modern Serif', 'Arial', sans-serif;
     min-width: 70px;
     height: 35px;
-    margin-left: 19px;
+    margin: 6px;
     border-radius: 10px;
     display: inline-block;
+}
+
+.hwline {
+    max-width: 100%;
+    display: block;
+}
+.hwline.hidden {
+    visibility: hidden;
+}
+
+.lineimg {
+    margin: 6px;
+    border-radius: 10px;
+    max-width: 100%;
+}
+
+.lhalf {
+    width: 48%;
+    display: inline-block;
+    float: left;
+    height: 100%;
+    top: 0px;
+}
+.preview {
+    width: 100%;
+    top: 0px;
+    min-height: 500px;
+    opacity: .5;
+}
+
+.rhalf {
+    width: 48%;
+    display: inline-block;
+    float: right;
+    height: 100%;
+    top: 0px;
+}
+
+.answersWrap {
+    visibility: visible;
+}
+.answersWrap.hidden {
+    visibility: hidden;
+}
+#generatePDF{
+    cursor: pointer;
+}
+.selected {
+    background: yellow;
 }

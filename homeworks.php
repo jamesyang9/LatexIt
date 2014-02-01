@@ -5,9 +5,11 @@
       </div>
    </div>
    <div>
+   <div class="lhalf">
    <?php
+      $hack_num_lines;
       function generateHWs($uid) {
-         global $db;
+         global $db, $hack_num_lines;
          //$query = "SELECT * from ANSWERS WHERE id = {$id}";
          $query = $db->prepare('SELECT * from homeworks where user_id = :uid');
          $query->execute(
@@ -17,11 +19,13 @@
          for($i = 0; $i < $result['num_pieces']; $i++) {
             generateLine($i, $result['id']);
          }
+         $hack_num_lines = $result['num_pieces'];
       }
 
       function generateLine($piece_num, $id) {
-         echo "hi";
          global $db;
+         $image_url = "images/".$id."_".$piece_num.".png";
+         echo "<div class='hwline'> Line: $piece_num <img class='lineimg' src='$image_url'></img> <div class='answersWrap'>";
          //$query = "SELECT * from ANSWERS WHERE id = {$id}";
          $query = $db->prepare('SELECT * from answers where hw_id = :id and piece_num = :piece_num');
          $query->execute(array('id' => $id,
@@ -29,10 +33,31 @@
          $result = $query->fetchAll();
 
          foreach($result as $row) {
-            echo "<div>{$row['id']}, <div class = 'tex'> \$x^2\$ {$row['answer']} </div> </div>";
+            echo "<div class = 'tex' data-n=\"{$piece_num}\" data-text=\"{$row['answer']}\"> \$x^2\$ {$row['answer']} </div>";
+            echo "<div class = 'tex' data-n=\"{$piece_num}\" data-text=\"{$row['answer']}\"> \$x^2\$ {$row['answer']} </div>";
+            echo "<div class = 'tex' data-n=\"{$piece_num}\" data-text=\"{$row['answer']}\"> \$x^2\$ {$row['answer']} </div>";
+            echo "<div class = 'tex' data-n=\"{$piece_num}\" data-text=\"{$row['answer']}\"> \$x^2\$ {$row['answer']} </div>";
+            echo "<div class = 'tex' data-n=\"{$piece_num}\" data-text=\"{$row['answer']}\"> \$x^2\$ {$row['answer']} </div>";
          }
+         echo "</div></div>";
       }
       generateHWs("jamesyan");
    ?>
+   </div>
+   
+   <div class="rhalf"> 
+      <div style="float:left">Preview</div>
+      <div id="generatePDF" style="float:right">Generate PDF</div>
+      <div id="preview" class="tex preview">
+         <?php
+            for ($i = 0; $i < $hack_num_lines; $i++) {
+               echo "<div> </div>";
+            }
+         ?>
+      </div>
+   </div>
+   Complete
+
+
    </div>
 <? require_once 'footer.php'; ?>
