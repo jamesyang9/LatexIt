@@ -8,7 +8,7 @@ var rooms = [];
 var users = [];
 
 function active(room) {
-    return room.users.length >= 2; //&& (new Date().getTime() - room.time >= 3000);
+    return room.users.length >= 3;
 }
 
 var lock = new RWL();
