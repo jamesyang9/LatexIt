@@ -104,13 +104,16 @@ $(function() {
         $('#input textarea').keydown(function(e) {
             if (e.which == 13) {
                 socket.emit('answer', $(this).val());
-                $(this).val('Submitted, wait for other players...');
+                $(this).val('Submitted, waiting for other players...');
                 $(this).attr('placeholder', '');
                 $(this).attr('disabled', true).addClass('disabled');
                 clearInterval(timer);
             }
         });
 
+        $(window).unload(function(){
+            socket.emit('quit', '');
+        });
     });
 
     $('.hwline .tex').click(function () {
@@ -125,6 +128,8 @@ $(function() {
         console.log(isComplete());
         MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
     });
+
+    $('.index #tops').fadeIn();
 
     function isComplete() {
         for(var i = 0; i < $('.hwline').length; i++) {

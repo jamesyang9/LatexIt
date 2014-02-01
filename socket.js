@@ -12,7 +12,7 @@ var users = [];
 temp.track();
 
 function active(room) {
-    return room.users.length >= 4;
+    return room.users.length >= 3;
 }
 
 var lock = new RWL();
@@ -103,6 +103,66 @@ io.sockets.on('connection', function (socket) {
         assign(socket);
     });
 
+    socket.on('quit', function() {
+        if (socket.room) {
+            for (var i = 0; i < socket.room.users.length; i++) {
+                if (socket.room.users[i].user_id == socket.user_id) {
+                    console.log(socket.user_name + ' is a quitter');
+                    socket.room.users.splice(i, 1);
+                    break;
+                }
+            }
+            
+            if (socket.room.users.length == socket.room.answers) {
+                finish('');
+            }
+        }
+    });
+
+    function finish(text) {
+        console.log('Room finished');
+        var times = [];
+        socket.room.users.forEach(function(user) {
+            times.push(user);
+        });
+
+        times.sort(function(a, b) {
+            return a.answer_time < b.answer_time;
+        });
+
+        var scoreboard = [];
+        var just_text = times.map(function(u){ return u.text; });
+
+        temp.open('latex', function(err, info) {
+            fs.write(info.fd, just_text.join("\n"));
+            fs.close(info.fd, function(err) {
+                console.log('Execing', "php algo/score.php " + info.path + " " + times.length);
+                exec("php algo/score.php " + info.path + " " + times.length, function(error, stdout, stderr) {
+                    var scores = JSON.parse(stdout);
+                    
+                    for (var i = 0; i < times.length; i++) {
+                        var score = scores[i];
+                        var stmt = db.prepare('UPDATE answers SET score = ? WHERE answerer_id = ? AND hw_id = ?');
+                        stmt.run(score, socket.user_id, socket.room.hw);
+                        scoreboard.push({id:times[i].user_id, name:times[i].user_name, score: score});
+                    }
+                    stmt.finalize()
+                    
+                    socket.room.users.forEach(function(user) {
+                        user.emit('finished', scoreboard);
+                        setTimeout(function() {
+                            user.room = null;
+                            console.log(user.user_name + ' getting reassigned');
+                            assign(user);
+                        }, 2000);
+                    });
+                });
+                
+            });
+        });
+
+    }
+
     socket.on('answer', function(text) {
         if (text.trim() !== '') {
             var stmt = db.prepare('INSERT INTO answers (hw_id, answerer_id, answer, piece_num) VALUES(?, ?, ?, ?)');
@@ -115,46 +175,7 @@ io.sockets.on('connection', function (socket) {
 
         socket.room.answers++;
         if (socket.room.answers == socket.room.users.length) {
-            console.log('Room finished');
-            var times = [];
-            socket.room.users.forEach(function(user) {
-                times.push(user);
-            });
-
-            times.sort(function(a, b) {
-                return a.answer_time < b.answer_time;
-            });
-
-            var scoreboard = [];
-            var just_text = times.map(function(u){ return u.text; });
-
-            temp.open('latex', function(err, info) {
-                fs.write(info.fd, just_text.join("\n"));
-                fs.close(info.fd, function(err) {
-                    console.log('Execing', "php algo/score.php " + info.path + " " + times.length);
-                    exec("php algo/score.php " + info.path + " " + times.length, function(error, stdout, stderr) {
-                        var scores = JSON.parse(stdout);
-                        
-                        for (var i = 0; i < times.length; i++) {
-                            var score = scores[i];
-                            var stmt = db.prepare('UPDATE answers SET score = ? WHERE answerer_id = ? AND hw_id = ?');
-                            stmt.run(score, socket.user_id, socket.room.hw);
-                            scoreboard.push({id:times[i].user_id, name:times[i].user_name, score: score});
-                        }
-                        stmt.finalize()
-                        
-                        socket.room.users.forEach(function(user) {
-                            user.emit('finished', scoreboard);
-                            setTimeout(function() {
-                                console.log(user.user_name + ' getting reassigned');
-                                assign(user);
-                            }, 2000);
-                        });
-                    });
-                    
-                });
-            });
-
+            finish(text);
         }
     });
 });

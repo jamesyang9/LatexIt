@@ -6,7 +6,7 @@ function vectorize($sentence){
 
   //special case
   if($sentenceLength < 2){
-	$sentence = $sentence . " ";
+	$sentence = $sentence . "  ";
 	$sentenceLength = 2;
   }
 

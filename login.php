@@ -16,8 +16,8 @@
    <body>
      <div id="login">
        <div id="logo">
-         <img src="http://lorempixel.com/50/50/cats">
-         <span>LatexIt</span>
+         <img src="images/logo.png">
+         <span>LazyLatex</span>
        </div>
        <form method="POST" action="index.php" onsubmit="return verify(this);">        
         <input type="text" placeholder="Enter a name..." name="name" />

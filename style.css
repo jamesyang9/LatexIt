@@ -141,7 +141,9 @@ a {
 }
 
 #logo span {
-    font-size: 40px;
+    font-size: 56px;
+    position: relative;
+    top: 6px;
     vertical-align: bottom;
 }
 
@@ -280,6 +282,7 @@ a {
 }
 
 #tops {
+    display: none;
     position: relative;
     right: 30px;
     bottom: 15px;
