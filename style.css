@@ -307,7 +307,6 @@ a {
 }
 
 .rhalf {
-    visibility: hidden;
     display: none;
     width: 48%;
     display: inline-block;
