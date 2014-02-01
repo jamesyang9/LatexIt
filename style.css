@@ -154,11 +154,15 @@ a {
     text-align: center;
 }
 
-#description {
+#description, #waiting {
     font-size: 64px;
     color: #29d2bd;
     word-spacing: -0.1em;
     -webkit-transform: scale(1, 0.8);
+}
+
+#waiting {
+    display: none;
 }
 
 #guesser {
