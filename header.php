@@ -27,9 +27,8 @@ if (!array_key_exists('id', $_COOKIE) && !$posted && $page != 'login.php') {
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#">Stats</a></li>
-            <li><a href="#">Homework</a></li>
+            <li class="active"><a href="#">Game</a></li>
+            <li><a href="#">Files</a></li>
           </ul>
           <div class="navbar-right">
             <ul class="nav navbar-nav">

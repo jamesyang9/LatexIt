@@ -70,6 +70,10 @@ h1, h2, h3 {
     font-size: 72px;
 }
 
+.container {
+    width: 1000px;
+}
+
 a {
     color: #ffffa6;
     font-size: 40px;
@@ -86,9 +90,9 @@ a {
 
 .navbar a {
     text-transform: lowercase;
-    font-size: 28px;
+    font-size: 36px;
     letter-spacing: 1.5px;
-    margin-left: 150px;
+    margin-left: 210px;
     position: relative;
     top: 8px;
 }
