@@ -23,13 +23,7 @@
           </div>
         </div>
       </div>
-      <!--div class="row">
-        <div class="col-md-6" id="upload">
-          <h2>Homework upload</h2>
-        </div>
-        <div class="col-md-6">
-          <h2>Stats</h2>
-          WPM: ???
-        </div>
-      </div-->
+      <div>
+        <img src="images/tops.png" />
+      </div>
 <? require_once 'footer.php'; ?>
