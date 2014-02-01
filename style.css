@@ -245,16 +245,43 @@ a {
 }
 
 #footer {
-    position: fixed;
+    position: absolute;
     bottom: 20px;
-    left: 50%;
-    margin-left: -450px;
+    left: 20px;
 }
 
 #tops {
     position: relative;
     right: 30px;
     bottom: 15px;
+    width: 1000px;
+    height: 185px;
+    background: url(images/tops.png) no-repeat center center;
+}
+
+.homeworks #tops {
+    display: none;
+}
+
+#tops table {
+    position: absolute;
+    left: 70px;
+    top: 57px;
+    width: 840px;
+    text-align: center;
+    font-size: 30px;
+}
+
+#tops td {
+    width: 50%;
+}
+
+#tops td:first-child {
+    padding-right: 180px;
+}
+
+#tops td:last-child {
+    padding-right: 10px;
 }
 
 .tex {

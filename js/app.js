@@ -1,4 +1,8 @@
 $(function() {
+
+    var $container = $('body > .container');
+    $('body > .container').css('min-height', window.innerHeight - $container.offset().top);
+
     var globalData = new Object();
 
     globalData.texSeq = [];

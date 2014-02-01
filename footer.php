@@ -1,5 +1,29 @@
       <div id="footer">
-        <img src="images/tops.png" id="tops" />
+        <div id="tops">
+          <table>
+            <? $query = $db->query("SELECT SUM(score) FROM answers GROUP BY answerer_id");
+            ?>
+            <tr>
+              <td>Will</td>
+              <td>1000</td>
+            </tr>
+            <tr>
+              <td>Will</td>
+              <td>1000</td>
+            </tr>
+
+            <tr>
+              <td>Will</td>
+              <td>1000</td>
+            </tr>
+
+            <tr>
+              <td>Will</td>
+              <td>1000</td>
+            </tr>
+
+          </table>
+        </div>
         <img src="images/footer.png" />
       </div>
     </div>

@@ -19,7 +19,7 @@ if (!array_key_exists('id', $_COOKIE) && !$posted && $page != 'login.php') {
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
    </head>
-  <body>
+  <body class="<?= basename($page, '.php') ?>">
     <div class="navbar">
       <div class="container">
         <div class="navbar-header">
