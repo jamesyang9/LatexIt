@@ -29,10 +29,12 @@ $(function() {
     });
 
     setInterval(function() {
-        var length = $('#ellipsis').html().length;
-        var str = '';
-        for (var i = 0; i < ((length + 1) % 4); i++) str += '.';
-        $('#ellipsis').html(str);
+        if ($('#ellipsis').length) {
+            var length = $('#ellipsis').html().length;
+            var str = '';
+            for (var i = 0; i < ((length + 1) % 4); i++) str += '.';
+            $('#ellipsis').html(str);
+        }
     }, 500);
 
     // set up play button
@@ -40,7 +42,7 @@ $(function() {
         $('#playbtn img, #description').hide();
         $('#waiting').show();
         
-        var socket = io.connect('http://localhost:8000');
+        var socket = io.connect('http://' + document.location.hostname + ':8000');
         socket.emit('info', {'id': USER_ID, 'name': USER_NAME});
         var timer;
         socket.on('start', function(data) {

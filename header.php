@@ -23,12 +23,12 @@ if (!array_key_exists('id', $_COOKIE) && !$posted && $page != 'login.php') {
     <div class="navbar">
       <div class="container">
         <div class="navbar-header">
-          <a class="navbar-brand" href="#">LatexIt</a>
+          <a class="navbar-brand" href="index.php">LatexIt</a>
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Game</a></li>
-            <li><a href="#">Files</a></li>
+            <li><a href="index.php">Game</a></li>
+            <li><a href="homeworks.php">Files</a></li>
           </ul>
           <div class="navbar-right">
             <ul class="nav navbar-nav">
