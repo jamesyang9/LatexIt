@@ -1,4 +1,6 @@
 <?
+$db = new PDO('sqlite:db/site.db');
+
 $posted = false;
 if (array_key_exists('post', $_POST)) {
   setcookie('name', substr(trim(htmlentities($_POST['name'])), 0, 20));
@@ -36,10 +38,18 @@ if (array_key_exists('post', $_POST)) {
         </div>
       </div>
     </div>
-    
     <div class="container">
-      
+      <div class="row">
+        <div class="col-md-6" id="upload">
+          <h2>Homework upload</h2>
+        </div>
+        <div class="col-md-6">
+          <h2>Stats</h2>
+          WPM: ???
+        </div>
+      </div>
     </div>
+    <script src="https://www.dropbox.com/static/api/2/dropins.js" id="dropboxjs" data-app-key="kgnjjrr9ywdj8z5"></script>
     <script src="http://code.jquery.com/jquery-latest.js"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
     <script src="js/app.js"></script>
