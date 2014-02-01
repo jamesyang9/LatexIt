@@ -2,10 +2,14 @@ var io = require('socket.io').listen(8000);
 var RWL = require('rwlock');
 var exec = require('child_process').exec;
 var sqlite3 = require('sqlite3').verbose();
+var temp = require('temp');
+var fs = require('fs');
 var db = new sqlite3.Database('db/site.db');
 
 var rooms = [];
 var users = [];
+
+temp.track();
 
 function active(room) {
     return room.users.length >= 3;
@@ -50,7 +54,7 @@ function assign(user) {
 
                 hw_id = hw.id;
                 piece_num = pieces[Math.floor(Math.random() * pieces.length)];
-        
+                
                 room = {users: [user], 
                         time: new Date().getTime(), 
                         running: false,
@@ -115,27 +119,33 @@ io.sockets.on('connection', function (socket) {
             var scoreboard = [];
             var just_text = times.map(function(u){ return u.text; });
 
-            var json = JSON.stringify(just_text).replace("'", "\\'");
-            console.log('Execing', "php algo/score.php '" + json + "'");
-            exec("php algo/score.php '" + json + "'", function(error, stdout, stderr) {
-                var scores = JSON.parse(stdout);
-                
-                for (var i = 0; i < times.length; i++) {
-                    var score = scores[i];
-                    var stmt = db.prepare('UPDATE answers SET score = ? WHERE answerer_id = ? AND hw_id = ?');
-                    stmt.run(score, socket.user_id, socket.room.hw);
-                    scoreboard.push({name:times[i].user_name, score: score});
-                }
-                stmt.finalize()
-                
-                socket.room.users.forEach(function(user) {
-                    user.emit('finished', scoreboard);
-                    setTimeout(function() {
-                        console.log(user.user_name + ' getting reassigned');
-                        assign(user);
-                    }, 7000);
+            temp.open('latex', function(err, info) {
+                fs.write(info.fd, just_text.join("\n"));
+                fs.close(info.fd, function(err) {
+                    console.log('Execing', "php algo/score.php " + info.path + " " + times.length);
+                    exec("php algo/score.php " + info.path + " " + times.length, function(error, stdout, stderr) {
+                        var scores = JSON.parse(stdout);
+                        
+                        for (var i = 0; i < times.length; i++) {
+                            var score = scores[i];
+                            var stmt = db.prepare('UPDATE answers SET score = ? WHERE answerer_id = ? AND hw_id = ?');
+                            stmt.run(score, socket.user_id, socket.room.hw);
+                            scoreboard.push({name:times[i].user_name, score: score});
+                        }
+                        stmt.finalize()
+                        
+                        socket.room.users.forEach(function(user) {
+                            user.emit('finished', scoreboard);
+                            setTimeout(function() {
+                                console.log(user.user_name + ' getting reassigned');
+                                assign(user);
+                            }, 7000);
+                        });
+                    });
+                    
                 });
             });
+
         }
     });
 });

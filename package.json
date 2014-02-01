@@ -6,7 +6,8 @@
   "dependencies": {
     "socket.io": "~0.9.16",
     "sqlite3": "~2.2.0",
-    "rwlock": "~4.0.0"
+    "rwlock": "~4.0.0",
+    "temp": "~0.6.0"
   },
   "devDependencies": {},
   "scripts": {
