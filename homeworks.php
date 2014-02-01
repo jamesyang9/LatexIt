@@ -1,8 +1,11 @@
 <? require_once 'header.php'; ?>
    <div>
-      <div> 
-         <center>Upload file</center>
+      <center>
+      <div id="upload"> 
+         Upload file <br>
       </div>
+      <br>
+      </center>
    </div>
    <div>
    <div class="lhalf">
