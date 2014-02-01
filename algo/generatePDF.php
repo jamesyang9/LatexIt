@@ -1,4 +1,7 @@
 <?php
+	$strs = $_POST['arr'];
+	$name = $_POST['id'];
+
 	function generatePDF($strings, $filename) 
 	{
 		$template = "template.tex";
@@ -15,6 +18,5 @@
 		fclose($texFile);
 		shell_exec("pdflatex ". $filename . ".tex");
 	}
-	$strs = array("$4x^2 \\sum_{i=0}^9 i^2$", "is", "my", "file");
-	generatePDF($strs, "output");
+	generatePDF($strs, $name);
 ?>
