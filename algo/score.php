@@ -72,7 +72,7 @@
 	return $scores;
 	}
 
-	print json_encode(score(json_decode($argv[1]));
+	print json_encode(score(json_decode($argv[1])));
 
 
 ?>
