@@ -20,7 +20,7 @@ if (!array_key_exists('id', $_COOKIE) && !$posted && $page != 'login.php') {
     <link rel="stylesheet" href="style.css">
    </head>
   <body>
-    <div class="navbar navbar-inverse">
+    <div class="navbar">
       <div class="container">
         <div class="navbar-header">
           <a class="navbar-brand" href="#">LatexIt</a>
