@@ -3,4 +3,18 @@
 	$w = imagesx($img);
 	$h = imagesy($img);
 	$grayscale = imagefilter($img, IMG_FILTER_GRAYSCALE);
+
+	function pixelIntenxity($x, $y) {
+		global $w, $h;
+	}
+
+	function pixelValue($x, $y) {
+		
+	}
+
+	function lineValue($x, $y) {
+
+	}
+
+
 ?>
