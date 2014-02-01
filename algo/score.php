@@ -60,17 +60,19 @@
 	//time awards between 0 and 100 base. Correction between (0.0, 1.0)
 	//Since only placing matters, time is irrelevant.
 
-	function score($translatedStrings, $index) {
-	$thisString = $translatedStrings[$index];
+	function score($translatedStrings) {
+	$scores = array();
 	$numPlayers = count($translatedStrings);
-	$thisScore = max(10*$numPlayers, 20*($numPlayers - $index));
-
-	$similarity = cosine($thisString, $translatedStrings);	
-	return $thisScore*$similarity;
+	for($index = 0; $index < $numPlayers; $index++){	
+		$thisString = $translatedStrings[$index];
+		$thisScore = max(10*$numPlayers, 20*($numPlayers - $index));
+		$similarity = cosine($thisString, $translatedStrings);	
+		$scores[$index] = round($thisScore*$similarity);
+	}	
+	return $scores;
 	}
 
-	$decoded = json_decode($argv[1]);
-	print score(decoded[0], decoded[1]);
+	print json_encode(score(json_decode($argv[1]));
 
 
 ?>

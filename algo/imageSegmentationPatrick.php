@@ -67,8 +67,7 @@
    	  $dst_x = 0;
 		$dst_y = 0;
 	 	$outImg = imagecreate($w, $dst_h);
- 		imagecopyresampled($outImg, $img, $dst_x, $dst_y, $src_x, $src_y, $dst_w, $dst_h, $dst_w, $dst_h);
-		imagepng($img, "test" . "_" . $sliceNum . ".png");			
+ 		imagecopyresampled($outImg, $img, $dst_x, $dst_y, $src_x, $src_y, $dst_w, $dst_h, $dst_w, $dst_h);		
 		imagepng($outImg, $imgId . "_" . $sliceNum . ".png");
 	}
 
@@ -121,7 +120,7 @@
 		$img = imagecreatefrompng($filename);
 		$w = imagesx($img);
 		$h = imagesy($img);
-		imagefilter($img, IMG_FILTER_PIXELATE, 3);
+//		imagefilter($img, IMG_FILTER_PIXELATE, 10);
 		imagepng($img, "testout.png");
 		$lineIs = array();
 		$cuts = array();
