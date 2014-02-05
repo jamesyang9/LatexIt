@@ -61,8 +61,8 @@ $(function() {
                 $('#input textarea').attr('disabled', false).removeClass('disabled').val('').focus();
                 $('#output').html('');
                 $('#sample img').attr('src', 'images/latex/' + data.hw + '_' + data.piece + '.png');
-                $('#timer').html('0:30');
-                $('#timer').data('time', 30)
+                $('#timer').html('0:500');
+                $('#timer').data('time', 500);
                 clearInterval(timer);
                 timer = setInterval(function() { 
                     var time = $('#timer').data('time') - 1;
